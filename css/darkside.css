@@ -22,6 +22,10 @@
     145deg, rgba(9,147,174, 1) 5%, rgba(14,56,88, 1) 75%);
  }
 
+ .w-40 {
+  width: 40%!important;
+}
+
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
