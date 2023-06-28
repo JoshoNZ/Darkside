@@ -1,39 +1,19 @@
-// Function to update the countdown
-function updateCountdown() {
-  // Get the current date and time
-  const currentDate = new Date();
 
-  // Set the target time to 4 PM NZST
-  const targetTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 16, 0, 0);
+// Update the HTML with the countdown button
+const countdownDiv = document.getElementById("countdown");
+countdownDiv.innerHTML = `
+  <button class="btn btn-dark" >
+    Restarts Are
+  </button>
+`;
+const countdownDiv2 = document.getElementById("countdown2");
+countdownDiv2.innerHTML = `
+  <button class="btn btn-dark">
+    4PM NZST (2PM AEST)
+  </button>
+`;
 
-
-  // Convert the target time to the user's timezone
-  const userTargetTime = targetTime.toLocaleTimeString(undefined, { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
-
-  // Calculate the time difference in milliseconds
-  const timeDifference = targetTime.getTime() - currentDate.getTime();
-
-  // Calculate the hours, minutes, and seconds remaining
-  const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60));
-  const minutesRemaining = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-  const secondsRemaining = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-  // Update the HTML with the countdown button
-  const countdownDiv = document.getElementById("countdown");
-  countdownDiv.innerHTML = `
-    <button class="btn btn-dark" disabled>
-      Countdown Till Restart: ${hoursRemaining}h ${minutesRemaining}m ${secondsRemaining}s
-    </button>
-  `;
-}
-
-// Update the countdown immediately
-updateCountdown();
-
-// Update the countdown every second
-setInterval(updateCountdown, 1000);
-
-// Make a request to the API
+// Make a request to the API...
 fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=Kct2q4OHYjKQcK0So9fxItddzI8kvnafrg")
   .then(response => {
     if (!response.ok) {
