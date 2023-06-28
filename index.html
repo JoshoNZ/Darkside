@@ -1,32 +1,34 @@
 <!doctype html>
 <html lang="en" class="h-100">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Josho.NZ | TheLoneDark">
+  <meta property="og:title" content="Darkside Games - Home">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="img/DarksideLogo.png">
+  <meta name="twitter:card" content="img/DarksideLogo.png">
+  <meta name="twitter:title" content="Darkside Games - Home">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="img/DarksideLogo.png">
   <title>Darkside Games - Home</title>
-
+  
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Indie+Flower&display=swap"
     rel="stylesheet">
-
-  <!-- Favicons
-<link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="img/favicons/manifest.json">
-<link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#7952b3">
-<link rel="icon" href="img/favicons/favicon.ico">
-    -->
-
+  <!-- Favicons -->
+<link rel="apple-touch-icon" href="img/DarksideLogo.png" sizes="180x180">
+<link rel="icon" href="img/DarksideLogo.png" sizes="32x32" type="image/png">
+<link rel="icon" href="img/DarksideLogo.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="img/DarksideLogo.png">
+<link rel="mask-icon" href="img/DarksideLogo.png" color="#7952b3">
+<link rel="icon" href="img/DarksideLogo.png">
   <!-- Custom styles for this template -->
   <link href="css/darkside.css" rel="stylesheet">
 </head>
-
 <body>
   <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column background-img"
     style="background-image: url('img/cover.jpg'), linear-gradient(rgba(47, 50, 50, 0.5),rgba(47, 50, 50, 0.5));">
@@ -38,18 +40,18 @@
           <img class="img-fluid w-40 mx-auto d-block" src="img/DarksideLogo.png"/>
         </div>
       </div>
-
       <div class="row">
         <div class="col-12 py-2">
           <ul class="nav justify-content-center">
+            <div id="data"></div>
+          </ul>
+          <div class="text-center mt-2">
+          </div>
+          <ul class="nav justify-content-center">
             <li class="nav-item">
-                <iframe src="https://discord.com/widget?id=1015612338419810314&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-            </li>
-            <li class="nav-item">
-                <a href="steam://rungameid/107410// +connect 121.99.242.246:2302">
-                  <img src="https://arma3-servers.net/server/275982/banners/banner-1.png" border="0">
-                </a>
-            </li>
+              <a href="https://discord.gg/thedarksidelife" target="_blank">
+                <img class="discord-banner" src="https://discord.com/api/guilds/1015612338419810314/widget.png?style=banner3" alt="Discord Banner 2"/>
+              </a>
           </ul>
         </div>
       </div>
@@ -59,14 +61,13 @@
         <div class="container">
           <div class="row">
             <div class="col-md text-center">
-              <span class="text-white">Darkside Games</span>
+              <span class="text-white">&copy; 2023 Darkside Games</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
@@ -76,7 +77,6 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-slim.min.js"><\/script>')</script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/function.js"></script>
-
+  <script src="js/serverstats.js"></script>
 </body>
-
 </html>
