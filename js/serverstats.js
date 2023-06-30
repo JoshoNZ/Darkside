@@ -9,7 +9,7 @@ countdownDiv.innerHTML = `
 const countdownDiv2 = document.getElementById("countdown2");
 countdownDiv2.innerHTML = `
   <button class="btn btn-dark">
-    4PM NZST (2PM AEST)
+    5PM NZST (3PM AEST)
   </button>
 `;
 
