@@ -38,6 +38,10 @@ function fetchAndUpdateServerData() {
         dataDiv.innerHTML = `
           <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">Be The First</button>
         `;
+      } else if (currentPlayers === "120") {
+        dataDiv.innerHTML = `
+          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Server At Max">Were Overflowing, ${currentPlayers}/${maxPlayers} </button>
+        `;
       } else {
         dataDiv.innerHTML = `
           <button class="btn btn-danger btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">
