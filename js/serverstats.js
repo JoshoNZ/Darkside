@@ -15,7 +15,7 @@ discordtDiv.innerHTML = `
 
 // Function to fetch and update the server data
 function fetchAndUpdateServerData() {
-  fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=Kct2q4OHYjKQcK0So9fxItddzI8kvnafrg")
+  fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=mQTIae48FOQT1WIT8eD96C9aykyzCp8zQX")
     .then(response => {
       if (!response.ok) {
         throw new Error("Failed to fetch data. Status: " + response.status);
@@ -28,7 +28,7 @@ function fetchAndUpdateServerData() {
 
       // Update the HTML based on the "is_online" value and player count
       const dataDiv = document.getElementById("data");
-      const ipAddress = "121.99.242.246:2302";
+      const ipAddress = "103.212.227.29:2302";
       const steamLink = `steam://rungameid/107410// +connect ${ipAddress}`;
       if (isOnline === "0") {
         dataDiv.innerHTML = `
