@@ -1,4 +1,9 @@
-
+//  ____             _        _     _         ____                _           _     _     _  __        ____  ____  
+// |  _ \  __ _ _ __| | _____(_) __| | ___   / ___|___  _ __ ___ | |__   __ _| |_  | |   (_)/ _| ___  |  _ \|  _ \ 
+// | | | |/ _` | '__| |/ / __| |/ _` |/ _ \ | |   / _ \| '_ ` _ \| '_ \ / _` | __| | |   | | |_ / _ \ | |_) | |_) |
+// | |_| | (_| | |  |   <\__ \ | (_| |  __/ | |__| (_) | | | | | | |_) | (_| | |_  | |___| |  _|  __/ |  _ <|  __/ 
+// |____/ \__,_|_|  |_|\_\___/_|\__,_|\___|  \____\___/|_| |_| |_|_.__/ \__,_|\__| |_____|_|_|  \___| |_| \_\_|    
+//                                                                                                                 
 // Update the HTML with the buttons
 const restartDiv = document.getElementById("restart");
 restartDiv.innerHTML = `
@@ -22,14 +27,16 @@ function fetchAndUpdateServerData() {
       }
       return response.json(); // Parse the response as JSON
     })
+
     .then(data => {
       // Extract the desired values
       const { maxplayers: maxPlayers, players: currentPlayers, is_online: isOnline } = data;
 
       // Update the HTML based on the "is_online" value and player count
       const dataDiv = document.getElementById("data");
-      const ipAddress = "103.212.227.29:2302";
-      const steamLink = `steam://rungameid/107410// +connect ${ipAddress}`;
+      const ipAddress = "103.212.227.29";
+      const port = "2302";
+      const steamLink = `steam://rungameid/107410// +connect ${ipAddress}:${port}`;
       if (isOnline === "0") {
         dataDiv.innerHTML = `
           <button class="btn btn-secondary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Check Back Soon">Server Offline</button>
@@ -38,7 +45,7 @@ function fetchAndUpdateServerData() {
         dataDiv.innerHTML = `
           <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">Be The First</button>
         `;
-      } else if (currentPlayers === "120") {
+      } else if (currentPlayers === maxPlayers) {
         dataDiv.innerHTML = `
           <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Server At Max">Were Overflowing, ${currentPlayers}/${maxPlayers} </button>
         `;
@@ -49,6 +56,7 @@ function fetchAndUpdateServerData() {
           </button>
         `;
       }
+
       // Initialize Bootstrap tooltip
       const tooltipTriggerEl = document.querySelector("#data [data-bs-toggle='tooltip']");
       const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
