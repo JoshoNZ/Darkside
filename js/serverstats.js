@@ -20,7 +20,7 @@ discordtDiv.innerHTML = `
 
 // Function to fetch and update the server data
 function fetchAndUpdateServerData() {
-  fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=mQTIae48FOQT1WIT8eD96C9aykyzCp8zQX")
+  fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=GQw8qRJE1Qu10Vp1rCOhM3qIieffxLNpPp")
     .then(response => {
       if (!response.ok) {
         throw new Error("Failed to fetch data. Status: " + response.status);
