@@ -8,7 +8,7 @@
 const restartDiv = document.getElementById("restart");
 restartDiv.innerHTML = `
   <button class="btn btn-dark" >
-    Restarts Are 4PM NZST (2PM AEST)
+    Restarts Are 1PM NZST (11AM AEST, 6PM PST)
   </button>
 `;
 const discordtDiv = document.getElementById("discord");
