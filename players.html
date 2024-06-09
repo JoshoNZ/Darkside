@@ -85,7 +85,7 @@
       padding: 10px 20px;
       font-size: 1em;
       color: #fff;
-      background: linear-gradient(90deg, #007bff, #0056b3);
+      background: linear-gradient(90deg, #b30000, #ff0000);
       border: none;
       border-radius: 5px;
       text-decoration: none;
@@ -94,7 +94,7 @@
       position: relative;
     }
     .connect-button:hover, .workshop-button:hover {
-      background: linear-gradient(90deg, #0056b3, #007bff);
+      background: linear-gradient(90deg, #b30000, #ff0000);
       transform: scale(1.05);
     }
     .connect-button::after, .workshop-button::after {
@@ -189,14 +189,14 @@
 </head>
 <body>
   <div class="server-info">
-    <h1>Arma 3 Server Status</h1>
-    <p id="server-name"></p>
+    <h1 id="server-name">Darkside Server Status</h1>
     <p id="server-map"></p>
     <p id="server-players"></p>
     <p id="server-mode"></p>
+    <div class="status-indicator" id="server-status"></div>
+    <br>
     <a id="connect-link" href="#" class="connect-button" data-tooltip="Click to connect">Connect</a>
     <a href="#" id="workshop-link" class="workshop-button" data-tooltip="View Collection">Workshop</a>
-    <div class="status-indicator" id="server-status"></div>
   </div>
   <table id="player-table">
     <thead>
@@ -224,7 +224,7 @@
         const data = await response.json();
 
         // Display server information
-        document.getElementById("server-name").innerText = `Server Name: ${data.name}`;
+        document.getElementById("server-name").innerText = `${data.name}`;
         document.getElementById("server-map").innerText = `Map: ${data.map}`;
         document.getElementById("server-players").innerText = `Players: ${data.playersCurrent}/${data.playersMax}`;
         document.getElementById("server-mode").innerText = `Game Mode: ${data.missionName}`;
