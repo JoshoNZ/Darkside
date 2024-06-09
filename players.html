@@ -3,13 +3,13 @@
 <head>  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
+  <meta name="description" content="Darkside Games - Players">
   <meta name="author" content="Josho.NZ | TheLoneDark">
-  <meta property="og:title" content="Darkside Games - Home">
+  <meta property="og:title" content="Darkside Games - Players">
   <meta property="og:description" content="">
   <meta property="og:image" content="img/DarksideLogo.png">
   <meta name="twitter:card" content="img/DarksideLogo.png">
-  <meta name="twitter:title" content="Darkside Games - Home">
+  <meta name="twitter:title" content="Darkside Games - Players">
   <meta name="twitter:description" content="">
   <meta name="twitter:image" content="img/DarksideLogo.png">
   <title>Darkside Games - Home</title>
@@ -78,6 +78,9 @@
       border-radius: 50%;
       display: inline-block;
       margin-left: 10px;
+    }
+    a:hover {
+     color: #fff; 
     }
     .connect-button, .workshop-button {
       display: inline-block;
@@ -227,7 +230,7 @@
         document.getElementById("server-name").innerText = `${data.name}`;
         document.getElementById("server-map").innerText = `Map: ${data.map}`;
         document.getElementById("server-players").innerText = `Players: ${data.playersCurrent}/${data.playersMax}`;
-        document.getElementById("server-mode").innerText = `Game Mode: ${data.missionName}`;
+        document.getElementById("server-mode").innerText = `Desscription: ${data.missionName}`;
         serverStatus.style.backgroundColor = data.status === "online" ? "#28a745" : "#dc3545"; // Green for online, red for offline
 
         // Set connect link and workshop link
