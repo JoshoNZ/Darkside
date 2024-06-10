@@ -1,3 +1,11 @@
+<!--
+//  ____             _        _     _         ____                _           _     _     _  __        ____  ____  
+// |  _ \  __ _ _ __| | _____(_) __| | ___   / ___|___  _ __ ___ | |__   __ _| |_  | |   (_)/ _| ___  |  _ \|  _ \ 
+// | | | |/ _` | '__| |/ / __| |/ _` |/ _ \ | |   / _ \| '_ ` _ \| '_ \ / _` | __| | |   | | |_ / _ \ | |_) | |_) |
+// | |_| | (_| | |  |   <\__ \ | (_| |  __/ | |__| (_) | | | | | | |_) | (_| | |_  | |___| |  _|  __/ |  _ <|  __/ 
+// |____/ \__,_|_|  |_|\_\___/_|\__,_|\___|  \____\___/|_| |_| |_|_.__/ \__,_|\__| |_____|_|_|  \___| |_| \_\_|    
+//                                                                                                                 
+-->
 <!DOCTYPE html>
 <html>
 <head>  
@@ -241,7 +249,7 @@
         document.getElementById("server-name").innerText = `${data.name}`;
         document.getElementById("server-map").innerText = `Map: ${data.map}`;
         document.getElementById("server-players").innerText = `Players: ${data.playersCurrent}/${data.playersMax}`;
-        document.getElementById("server-mode").innerText = `Desscription: ${data.missionName}`;
+        document.getElementById("server-mode").innerText = `Description: ${data.missionName}`;
         serverStatus.style.backgroundColor = data.status === "online" ? "#28a745" : "#dc3545"; // Green for online, red for offline
 
         // Set connect link and workshop link
