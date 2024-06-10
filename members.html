@@ -1,3 +1,11 @@
+<!--
+//  ____             _        _     _         ____                _           _     _     _  __        ____  ____  
+// |  _ \  __ _ _ __| | _____(_) __| | ___   / ___|___  _ __ ___ | |__   __ _| |_  | |   (_)/ _| ___  |  _ \|  _ \ 
+// | | | |/ _` | '__| |/ / __| |/ _` |/ _ \ | |   / _ \| '_ ` _ \| '_ \ / _` | __| | |   | | |_ / _ \ | |_) | |_) |
+// | |_| | (_| | |  |   <\__ \ | (_| |  __/ | |__| (_) | | | | | | |_) | (_| | |_  | |___| |  _|  __/ |  _ <|  __/ 
+// |____/ \__,_|_|  |_|\_\___/_|\__,_|\___|  \____\___/|_| |_| |_|_.__/ \__,_|\__| |_____|_|_|  \___| |_| \_\_|    
+//                                                                                                                 
+-->
 <!DOCTYPE html>
 <html>
 <head>  
@@ -171,15 +179,31 @@
     ::-webkit-scrollbar-track {
         background-color: #333;
     }
+    .role-box {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin: 2px;
+      font-size: 0.9em;
+      text-align: center;
+      white-space: nowrap;
+      color: #fff;
+      text-shadow: 1px 1px 2px black;
+    }
+    .small-id {
+      font-size: 0.8em;
+      color: #888888;
+    }
   </style>
 </head>
 <body>
   <div class="server-info" id="server-info">
     <h1>Darkside Games - Discord Members</h1>
     <h2 id="member-count" style="text-align: center;"></h2>
-    <h2 id="role-count" style="text-align: center;"></h2>
-    <div class="loading-spinner" id="loading-spinner"></div>
-    <h2 id="police-role-count" style="text-align: center;"></h2> <div class="loading-spinner" id="loading-spinner"></div>
+    <h2 id="staff-role-count" style="text-align: center;"></h2>
+    <h2 id="wlc-role-count" style="text-align: center;"></h2>
+    <h2 id="wls-role-count" style="text-align: center;"></h2>
+    <h2 id="police-role-count" style="text-align: center;"></h2>
     <div class="search-container">
       <input type="text" id="search-input" placeholder="Search by name">
       <button onclick="searchMembers()">Search</button>
@@ -187,6 +211,7 @@
     </div>
   </div>
   <table id="member-table">
+    <div class="loading-spinner" id="loading-spinner"></div>
     <thead>
       <tr>
         <th></th>
@@ -218,16 +243,38 @@
         document.getElementById("member-count").innerText = `Member Count: ${data.memberCount}`;
         
         // Count members with specified roles
-        const roleCounts = data.members.reduce((acc, member) => {
+        const staffRoleCounts = data.members.reduce((acc, member) => {
           const relevantRoles = member.roles.filter(role =>
-            ['Staff', 'Help Desk', 'Moderator', 'Developer', 'Administrator', 'Owner'].includes(role)
+            ['Staff', 'Help Desk', 'Moderator', 'Developer', 'Administrator', 'Owner'].includes(role.name)
           );
           if (relevantRoles.length > 0) {
             acc += 1;
           }
           return acc;
         }, 0);
-        document.getElementById("role-count").innerText = `Staff: ${roleCounts}`;
+        document.getElementById("staff-role-count").innerText = `Staff: ${staffRoleCounts}`;
+        
+        const wlcroleCounts = data.members.reduce((acc, member) => {
+          const relevantRoles = member.roles.filter(role =>
+            ['Whitelisted Civilian'].includes(role.name)
+          );
+          if (relevantRoles.length > 0) {
+            acc += 1;
+          }
+          return acc;
+        }, 0);
+        document.getElementById("wlc-role-count").innerText = `Whitelisted Civilians: ${wlcroleCounts}`;
+        
+        const wlsroleCounts = data.members.reduce((acc, member) => {
+          const relevantRoles = member.roles.filter(role =>
+            ['Whitelisted Security'].includes(role.name)
+          );
+          if (relevantRoles.length > 0) {
+            acc += 1;
+          }
+          return acc;
+        }, 0);
+        document.getElementById("wls-role-count").innerText = `Whitelisted Security: ${wlsroleCounts}`;
 
         const policeRoles = [
           'Commissioner', 'Deputy Commissioner', 'Assistant Commissioner', 
@@ -236,7 +283,7 @@
         ];
 
         const policeRoleCount = data.members.reduce((acc, member) => {
-          if (member.roles.some(role => policeRoles.includes(role))) {
+          if (member.roles.some(role => policeRoles.includes(role.name))) {
             acc += 1;
           }
           return acc;
@@ -251,15 +298,30 @@
         // Add each member to the table
         data.members.forEach(member => {
         const row = document.createElement("tr");
-        let usernameCellContent = `<span>${member.username}</span>`; // Username in white
+        let usernameCellContent = `<span>${member.username}</span>`;
         if (member.nickname) {
-            usernameCellContent += ` <span class="gray-text">[${member.nickname}]</span>`; // Nickname in gray
+            usernameCellContent += ` <span class="gray-text">[${member.nickname}]</span>`;
         }
+        usernameCellContent += `<br><span class="small-id">(${member.id})</span>`;
+
+       
+        const rolesCellContent = member.roles.map(role => {
+            let roleDisplay = role.name;
+            if (role.emoji) roleDisplay = `${role.emoji} ${roleDisplay}`;
+
+            // Adjust role box color for black roles
+            let roleBoxColor = role.color;
+            if (roleBoxColor === "#000000") {
+                roleBoxColor = "#888888"; 
+            }
+
+            return `<span class="role-box" style="background-color:${roleBoxColor}">${roleDisplay}</span>`;
+        }).join(' ');
 
         row.innerHTML = `
             <td><div class="avatar-circle"><img src="${member.avatarURL}" alt="Avatar"></div></td>
             <td>${usernameCellContent}</td> 
-            <td>${member.roles.join(', ')}</td>
+            <td>${rolesCellContent}</td>
             <td>${humanizeDate(member.joinedAt)}</td>
         `;
         memberTableBody.appendChild(row);
