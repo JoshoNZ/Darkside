@@ -39,20 +39,26 @@ function fetchAndUpdateServerData() {
       const steamLink = `steam://rungameid/107410// +connect ${ipAddress}:${port}`;
       if (isOnline === "0") {
         dataDiv.innerHTML = `
-          <button class="btn btn-secondary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Check Back Soon">Server Offline</button>
+          <button class="btn btn-secondary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Check Back Soon">
+            <i class="fas fa-power-off me-2"></i>Server Offline
+          </button>
         `;
       } else if (currentPlayers === "0") {
         dataDiv.innerHTML = `
-          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">Be The First</button>
+          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">
+            <i class="fas fa-play me-2"></i>Be The First
+          </button>
         `;
       } else if (currentPlayers === maxPlayers) {
         dataDiv.innerHTML = `
-          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Server At Max">Were Overflowing, ${currentPlayers}/${maxPlayers} </button>
+          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Server At Max">
+            <i class="fas fa-users me-2"></i>We're Overflowing, ${currentPlayers}/${maxPlayers}
+          </button>
         `;
       } else {
         dataDiv.innerHTML = `
           <button class="btn btn-danger btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">
-           Join ${currentPlayers}/${maxPlayers} Players
+            <i class="fas fa-gamepad me-2"></i>Join ${currentPlayers}/${maxPlayers} Players
           </button>
         `;
       }

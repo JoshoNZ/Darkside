@@ -37,6 +37,9 @@
 
     gtag('config', 'G-BB49Q7BX4S');
   </script> 
+  <!-- Add these in the <head> section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/serverstats.css">
 </head>
 <body>
   <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column background-img"
@@ -72,6 +75,17 @@
           <div id="discord"></div>
         </ul>
       </div>
+    </div>
+    <!-- Add this where you want the server stats to appear -->
+    <div class="server-stats-container">
+        <h1 class="server-title">Darkside Combat Life</h1>
+        <div class="server-info">
+            <div id="data"></div>
+            <div class="status-buttons">
+                <div id="restart"></div>
+                <div id="discord"></div>
+            </div>
+        </div>
     </div>
     <div class="mt-auto text-center" style="margin:-16px;">
       <div class="footer">
