@@ -67,12 +67,15 @@ setInterval(fetchAndUpdateServerData, 30000);
 
 // Function to fetch and display announcements
 function fetchAndDisplayAnnouncements() {
-    fetch("https://142.54.166.178:3000/api/recent-messages", {
+    // Use relative protocol (works for both HTTP and HTTPS)
+    fetch("//142.54.166.178:3000/api/recent-messages", {
         method: 'GET',
         mode: 'cors',
         headers: {
             'Accept': 'application/json',
-        }
+        },
+        // Add this to ignore SSL certificate issues
+        insecure: true
     })
         .then(response => {
             if (!response.ok) {
