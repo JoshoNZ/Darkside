@@ -42,57 +42,44 @@
   <link rel="stylesheet" href="css/serverstats.css">
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-dark navbar-custom">
+    <div class="navbar-container">
+      <a href="https://discord.gg/thedarksidelife" target="_blank" class="nav-btn discord-btn">
+        <i class="fab fa-discord me-2"></i>Discord
+      </a>
+
+      <img src="img/DarksideLogo.png" alt="Darkside Logo" class="navbar-logo">
+
+      <a href="https://police.thedarksidelife.com" class="nav-btn police-btn">
+        <i class="fas fa-shield-alt me-2"></i>Police
+      </a>
+    </div>
+  </nav>
+
   <div class="container-fluid d-flex w-100 vh-100 p-3 mx-auto flex-column background-img"
-    style="background-image: url('https://i.imgur.com/cTXHBXb.jpeg'), linear-gradient(rgba(47, 50, 50, 0.5),rgba(47, 50, 50, 0.5));">
-    <div class="container mb-auto">
-    </div>
+    style="background-image: url('img/DarksideBG.png'), linear-gradient(rgba(47, 50, 50, 0.5),rgba(47, 50, 50, 0.5));">
+    
     <div class="container header-text">
-      <div class="row">
-        <div class="col-12">
-          <img class="img-fluid w-40 mx-auto d-block" src="img/DarksideLogo.png"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 py-2">
-          <ul class="nav justify-content-center">
-            <div id="data"></div>
-          </ul>
-          <li>
-            <ul class="nav justify-content-center">
-              <div id="restart"></div>
-            </ul>
-          </li>
-          <div class="text-center mt-2">
-          </div>
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a href="https://discord.gg/thedarksidelife" target="_blank">
-                <img class="discord-banner" src="https://discord.com/api/guilds/1015612338419810314/widget.png?style=banner3" alt="Discord Banner 2"/>
-              </a>
-          </ul>
-        </div>
-        <ul class="nav justify-content-center">
-          <div id="discord"></div>
-        </ul>
-      </div>
-    </div>
-    <!-- Add this where you want the server stats to appear -->
-    <div class="server-stats-container">
-        <h1 class="server-title">Darkside Combat Life</h1>
+      <div class="server-stats-container">
         <div class="server-info">
-            <div id="data"></div>
-            <div class="status-buttons">
-                <div id="restart"></div>
-                <div id="discord"></div>
+          <div class="row">
+            <div class="col-12 py-2">
+              <div id="server-status" class="text-center mb-4"></div>
+              <div id="announcements" class="announcements-container"></div>
+              <div id="faq" class="faq-container"></div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+
     <div class="mt-auto text-center" style="margin:-16px;">
       <div class="footer">
         <div class="container">
           <div class="row">
             <div class="col-md text-center">
-              <span class="text-white">&copy; 2023 Darkside Games</span>
+              <span class="text-white">&copy; 2025 Darkside Games</span>
             </div>
           </div>
         </div>

@@ -4,76 +4,54 @@
 // | |_| | (_| | |  |   <\__ \ | (_| |  __/ | |__| (_) | | | | | | |_) | (_| | |_  | |___| |  _|  __/ |  _ <|  __/ 
 // |____/ \__,_|_|  |_|\_\___/_|\__,_|\___|  \____\___/|_| |_| |_|_.__/ \__,_|\__| |_____|_|_|  \___| |_| \_\_|    
 //                                                                                                                 
-// Update the HTML with the buttons
-const restartDiv = document.getElementById("restart");
-restartDiv.innerHTML = `
-  <button class="btn btn-dark" >
-    Restarts Are 1PM NZST (11AM AEST, 6PM PST)
-  </button>
-`;
-const discordtDiv = document.getElementById("discord");
-discordtDiv.innerHTML = `
-  <button class="btn btn-primary" >
-    Join our discord for more info
-  </button>
-`;
 
-// Function to fetch and update the server data
+// Remove the old button creation code and start directly with the functions
 function fetchAndUpdateServerData() {
-  fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=BsxSq49CKBgjjGBGmZTvLekvJKoxJEIDBd")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch data. Status: " + response.status);
-      }
-      return response.json(); // Parse the response as JSON
-    })
+    fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=BsxSq49CKBgjjGBGmZTvLekvJKoxJEIDBd")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch data. Status: " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const { maxplayers: maxPlayers, players: currentPlayers, is_online: isOnline } = data;
+            const statusDiv = document.getElementById("server-status");
+            const ipAddress = "203.10.96.195";
+            const port = "2393";
+            const steamLink = `steam://rungameid/107410// +connect ${ipAddress}:${port}`;
 
-    .then(data => {
-      // Extract the desired values
-      const { maxplayers: maxPlayers, players: currentPlayers, is_online: isOnline } = data;
+            if (isOnline === "0") {
+                statusDiv.innerHTML = `
+                    <button class="btn btn-secondary btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check Back Soon">
+                        <i class="fas fa-power-off me-2"></i>Server Offline
+                    </button>
+                `;
+            } else if (currentPlayers === "0") {
+                statusDiv.innerHTML = `
+                    <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click To Join">
+                        <i class="fas fa-play me-2"></i>Be The First
+                    </button>
+                `;
+            } else {
+                statusDiv.innerHTML = `
+                    <button class="btn btn-danger btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click To Join">
+                        <i class="fas fa-gamepad me-2"></i>Join ${currentPlayers}/${maxPlayers} Players
+                    </button>
+                `;
+            }
 
-      // Update the HTML based on the "is_online" value and player count
-      const dataDiv = document.getElementById("data");
-      const ipAddress = "203.10.96.195";
-      const port = "2393";
-      const steamLink = `steam://rungameid/107410// +connect ${ipAddress}:${port}`;
-      if (isOnline === "0") {
-        dataDiv.innerHTML = `
-          <button class="btn btn-secondary btn-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Check Back Soon">
-            <i class="fas fa-power-off me-2"></i>Server Offline
-          </button>
-        `;
-      } else if (currentPlayers === "0") {
-        dataDiv.innerHTML = `
-          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">
-            <i class="fas fa-play me-2"></i>Be The First
-          </button>
-        `;
-      } else if (currentPlayers === maxPlayers) {
-        dataDiv.innerHTML = `
-          <button class="btn btn-success btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Server At Max">
-            <i class="fas fa-users me-2"></i>We're Overflowing, ${currentPlayers}/${maxPlayers}
-          </button>
-        `;
-      } else {
-        dataDiv.innerHTML = `
-          <button class="btn btn-danger btn-lg" onclick="openSteamLink('${steamLink}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Join">
-            <i class="fas fa-gamepad me-2"></i>Join ${currentPlayers}/${maxPlayers} Players
-          </button>
-        `;
-      }
-
-      // Initialize Bootstrap tooltip
-      const tooltipTriggerEl = document.querySelector("#data [data-bs-toggle='tooltip']");
-      const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      const dataDiv = document.getElementById("data");
-      dataDiv.innerHTML = `
-        <button class="btn btn-secondary btn-lg">Server Offline</button>
-      `;
-    });
+            // Initialize tooltips
+            const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            tooltips.forEach(el => new bootstrap.Tooltip(el));
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            const statusDiv = document.getElementById("server-status");
+            statusDiv.innerHTML = `
+                <button class="btn btn-secondary btn-lg">Server Offline</button>
+            `;
+        });
 }
 
 // Function to open Steam link
@@ -86,3 +64,127 @@ fetchAndUpdateServerData();
 
 // Schedule periodic updates every 30 seconds
 setInterval(fetchAndUpdateServerData, 30000);
+
+// Function to fetch and display announcements
+function fetchAndDisplayAnnouncements() {
+    fetch("http://142.54.166.178:3000/api/recent-messages")
+        .then(response => response.json())
+        .then(data => {
+            const announcementsDiv = document.getElementById("announcements");
+            // Filter messages to only show from announcements channel
+            const messages = data.recentMessages.filter(msg => msg.channel === "announcements");
+
+            let announcementsHtml = `
+                <div class="announcements-title">
+                    <i class="fas fa-bullhorn me-2"></i>Announcements
+                </div>
+            `;
+
+            messages.forEach(message => {
+                const date = new Date(message.timestamp);
+                const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                let content = message.content
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\n/g, ' <br>')
+                    .replace(/https?:\/\/\S+/g, url => `<a href="${url}" target="_blank" class="text-info">${url}</a>`);
+
+                announcementsHtml += `
+                    <div class="announcement">
+                        <div class="announcement-header">
+                            <span class="announcement-author">${message.author}</span>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="announcement-content">${content}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Show message if no announcements
+            if (messages.length === 0) {
+                announcementsHtml += `
+                    <div class="announcement">
+                        <div class="announcement-content text-center">
+                            No announcements at this time.
+                        </div>
+                    </div>
+                `;
+            }
+
+            announcementsDiv.innerHTML = announcementsHtml;
+        })
+        .catch(error => {
+            console.error("Error fetching announcements:", error);
+            const announcementsDiv = document.getElementById("announcements");
+            announcementsDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    Unable to load announcements at this time.
+                </div>
+            `;
+        });
+}
+
+// Call the announcements function when page loads
+fetchAndDisplayAnnouncements();
+
+// Refresh announcements every 5 minutes
+setInterval(fetchAndDisplayAnnouncements, 300000);
+
+// Replace modList and displayModList with FAQ functionality
+const faqList = [
+    {
+        question: "What are the server rules?",
+        answer: "Community Rules can be found in our discord.<br>Ingame Rules can be found by pressing F2 while in game.<br> But it all comes down to common sense."
+    },
+    {
+        question: "When are the server restarts?",
+        answer: "Server restarts daily at around 1PM NZST (11AM AEST, 6PM PST)"
+    },
+    {
+        question: "How do I contact staff or report a player?",
+        answer: "The best way to is through our Discord server in the #support-request channel.<br>Reporting players, compenstation will require screenshots and/or video evidence."
+    }
+];
+
+function displayFAQ() {
+    const faqDiv = document.getElementById("faq");
+    let faqHtml = `
+        <div class="faq-title">
+            <i class="fas fa-question-circle me-2"></i>Frequently Asked Questions
+        </div>
+    `;
+
+    faqList.forEach((item, index) => {
+        faqHtml += `
+            <div class="faq-item" onclick="toggleFAQ(${index})">
+                <div class="faq-question">
+                    ${item.question}
+                    <span class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+                <div class="faq-answer">
+                    ${item.answer}
+                </div>
+            </div>
+        `;
+    });
+
+    faqDiv.innerHTML = faqHtml;
+}
+
+function toggleFAQ(index) {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item, i) => {
+        if (i === index) {
+            item.classList.toggle('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
+// Call displayFAQ when page loads
+displayFAQ();
