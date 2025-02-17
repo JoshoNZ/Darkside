@@ -67,8 +67,19 @@ setInterval(fetchAndUpdateServerData, 30000);
 
 // Function to fetch and display announcements
 function fetchAndDisplayAnnouncements() {
-    fetch("http://142.54.166.178:3000/api/recent-messages")
-        .then(response => response.json())
+    fetch("https://142.54.166.178:3000/api/recent-messages", {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
         .then(data => {
             const announcementsDiv = document.getElementById("announcements");
             // Filter messages to only show from announcements channel
