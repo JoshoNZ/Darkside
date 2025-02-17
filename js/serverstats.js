@@ -5,7 +5,6 @@
 // |____/ \__,_|_|  |_|\_\___/_|\__,_|\___|  \____\___/|_| |_| |_|_.__/ \__,_|\__| |_____|_|_|  \___| |_| \_\_|    
 //                                                                                                                 
 
-// Remove the old button creation code and start directly with the functions
 function fetchAndUpdateServerData() {
     fetch("https://arma3-servers.net/api/?object=servers&element=detail&key=BsxSq49CKBgjjGBGmZTvLekvJKoxJEIDBd")
         .then(response => {
@@ -41,7 +40,6 @@ function fetchAndUpdateServerData() {
                 `;
             }
 
-            // Initialize tooltips
             const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             tooltips.forEach(el => new bootstrap.Tooltip(el));
         })
@@ -54,28 +52,20 @@ function fetchAndUpdateServerData() {
         });
 }
 
-// Function to open Steam link
 function openSteamLink(link) {
   window.location.href = link;
 }
 
-// Fetch and update the server data immediately
 fetchAndUpdateServerData();
 
-// Schedule periodic updates every 30 seconds
 setInterval(fetchAndUpdateServerData, 30000);
 
-// Function to fetch and display announcements
 function fetchAndDisplayAnnouncements() {
-    // Use relative protocol (works for both HTTP and HTTPS)
-    fetch("//142.54.166.178:3000/api/recent-messages", {
+    fetch("http://142.54.166.178:3000/api/recent-messages", {
         method: 'GET',
-        mode: 'cors',
         headers: {
             'Accept': 'application/json',
-        },
-        // Add this to ignore SSL certificate issues
-        insecure: true
+        }
     })
         .then(response => {
             if (!response.ok) {
@@ -85,7 +75,6 @@ function fetchAndDisplayAnnouncements() {
         })
         .then(data => {
             const announcementsDiv = document.getElementById("announcements");
-            // Filter messages to only show from announcements channel
             const messages = data.recentMessages.filter(msg => msg.channel === "announcements");
 
             let announcementsHtml = `
@@ -140,13 +129,10 @@ function fetchAndDisplayAnnouncements() {
         });
 }
 
-// Call the announcements function when page loads
 fetchAndDisplayAnnouncements();
 
-// Refresh announcements every 5 minutes
 setInterval(fetchAndDisplayAnnouncements, 300000);
 
-// Replace modList and displayModList with FAQ functionality
 const faqList = [
     {
         question: "What are the server rules?",
@@ -200,5 +186,4 @@ function toggleFAQ(index) {
     });
 }
 
-// Call displayFAQ when page loads
 displayFAQ();
