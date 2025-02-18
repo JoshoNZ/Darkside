@@ -1,6 +1,6 @@
 body {
   background-color: #121212;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23242424' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23242424' fill-opacity='0.4'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .server-stats-container {
@@ -213,6 +213,7 @@ body {
     .navbar-logo {
         height: 80px;
         margin: -15px 1.5rem 0;
+        display: none; /* Hide the navbar logo */
     }
     
     .nav-btn {
@@ -224,6 +225,15 @@ body {
         padding: 0.4rem 1rem 1rem;
         width: calc(100% - 20px);
         top: 10px;
+    }
+
+    .mobile-logo {
+        display: block; /* Show the mobile logo */
+    }
+
+    .server-stats-container {
+        margin-top: 60px; /* Reduced top margin since logo is now inside */
+        text-align: center;
     }
 }
 
@@ -334,6 +344,10 @@ body {
     margin: 1rem;
     padding: 1rem;
   }
+
+  .container-fluid {
+      padding-top: 70px;
+  }
   
   .btn-lg {
     padding: 0.75rem 1.5rem;
@@ -353,10 +367,95 @@ body {
   .navbar-logo {
     height: 80px;
     margin: -15px 1.5rem 0;
+    visibility: hidden !important;
   }
 }
 
-/* Adjust the main content to account for fixed navbar */
-.container-fluid {
-    padding-top: 20px;
+/* Add this new class */
+.mobile-logo {
+    display: none;
+    height: 200px;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 8px rgba(13, 110, 253, 0.3));
+}
+
+@media (max-width: 480px) {
+
+    .mobile-logo {
+        height: 120px;
+    }
+    
+    .navbar-container {
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .navbar-logo {
+        height: 50px;
+        top: -15px;
+        visibility: hidden !important;
+    }
+    
+    .navbar-custom {
+        width: 92%;
+        top: 5px;
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .nav-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
+    }
+    
+    .server-stats-container {
+        margin: 60px 0.5rem 1rem;
+        padding: 0.75rem !important;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+    
+    .faq-question {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .faq-answer {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .faq-title, .announcements-title {
+        font-size: 1.3rem;
+    }
+
+    .announcement-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .container-fluid {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-logo {
+        height: 40px;
+        top: -10px;
+    }
+    
+    .nav-btn {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.65rem;
+    }
+    
+    .server-stats-container {
+        margin-top: 50px;
+    }
 }
