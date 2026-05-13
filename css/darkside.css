@@ -22,8 +22,8 @@
     145deg, rgba(9,147,174, 1) 5%, rgba(14,56,88, 1) 75%);
  }
 
- .w-40 {
-  width: 40%!important;
+ .w-30 {
+  width: 30%!important;
 }
 
 /* Custom default button */
@@ -113,3 +113,97 @@ html {
   background-color: #2B0000;
   border-radius: 4px;
 } 
+
+
+  .military-counter {
+    width: 350px;
+    background: rgba(10, 14, 10, 0.92);
+    border: 1px solid #5a6a3a;
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #b8c99a;
+    box-shadow: 0 0 12px rgba(90, 106, 58, 0.35), inset 0 0 20px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+  .military-counter::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(184, 201, 154, 0.04) 0px,
+      rgba(184, 201, 154, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  .mc-header {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 12px; letter-spacing: 2px; color: #d4e3a8;
+    border-bottom: 1px dashed #5a6a3a;
+    padding-bottom: 8px; margin-bottom: 10px;
+  }
+  .mc-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #a3c44a; box-shadow: 0 0 6px #a3c44a;
+  }
+  .mc-classified-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; margin-bottom: 12px;
+  }
+  .mc-label { color: #8a9a6a; letter-spacing: 1px; }
+  .mc-redacted {
+    background: #000;
+    padding: 2px 10px;
+    letter-spacing: 2px;
+    border: 1px solid #2a2a2a;
+    user-select: none;
+    position: relative;
+    color: transparent;
+  }
+  .mc-redacted::before {
+    content: "[ REDACTED ]";
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #c44a4a; font-weight: bold; font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .mc-segments {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 6px 0;
+  }
+  .mc-seg { text-align: center; min-width: 56px; }
+  .mc-num {
+    font-size: 28px; font-weight: bold;
+    color: #d4e3a8;
+    text-shadow: 0 0 8px rgba(163, 196, 74, 0.6);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    transition: opacity 0.08s;
+  }
+  .mc-num.mc-flicker { opacity: 0.4; }
+  .mc-cap {
+    font-size: 9px; letter-spacing: 2px; color: #8a9a6a;
+    margin-top: 2px;
+  }
+  .mc-sep {
+    font-size: 24px; color: #5a6a3a; padding-bottom: 14px;
+  }
+  .mc-footer {
+    display: flex; justify-content: space-between;
+    border-top: 1px dashed #5a6a3a;
+    padding-top: 8px; margin-top: 8px;
+    font-size: 9px; letter-spacing: 1px; color: #8a9a6a;
+  }
+  .mc-blink {
+    color: #c44a4a;
+    animation: mcBlink 0.6s infinite;
+  }
+  @keyframes mcBlink {
+    0%, 100% { opacity: 1; }
+    45%      { opacity: 1; }
+    50%      { opacity: 0.15; }
+    55%      { opacity: 1; }
+  }
